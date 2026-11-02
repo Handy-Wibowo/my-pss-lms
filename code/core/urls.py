@@ -5,6 +5,7 @@ urlpatterns = [
     path("", views.core, name="core"),
     path("users/", views.users, name="users"),
     path("statistik/", views.statistik, name="statistik"),
+    path("statistik-pengguna/", views.statistik_pengguna, name="statistik_pengguna"),
     path("statistik-api/", views.statistik_from_api, name="statistik_api"),
     path("course-stat/", views.courseStat, name="course_stat"),
     path("user-stats/", views.userStatistics, name="user_statistics"),

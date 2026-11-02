@@ -17,8 +17,12 @@ def statistik(request):
     return render(request, "core/statistik.html")
 
 
+def statistik_pengguna(request):
+    return render(request, "core/statistik_pengguna.html")
+
+
 def statistik_from_api(request):
-    return render(request, "core/statistik_from_api.html")
+    return render(request, "core/statistik_pengguna.html")
 
 
 def users(request):
@@ -85,7 +89,7 @@ def userStatistics(request):
     non_admin_users = User.objects.filter(is_staff=False, is_superuser=False)
     total_non_admin_users = non_admin_users.count()
 
-    users_with_courses = User.objects.filter(course__isnull=False).distinct()
+    users_with_courses = non_admin_users.filter(id__in=CourseMember.objects.values_list("user_id", flat=True)).distinct()
     total_users_with_courses = users_with_courses.count()
 
     users_without_courses = non_admin_users.exclude(
