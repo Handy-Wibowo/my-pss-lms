@@ -1,8 +1,9 @@
+import os
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse, Http404
 from django.template import loader
 from django.db.models import Max, Min, Avg, Count
 from django.core import serializers
@@ -89,7 +90,9 @@ def userStatistics(request):
     non_admin_users = User.objects.filter(is_staff=False, is_superuser=False)
     total_non_admin_users = non_admin_users.count()
 
-    users_with_courses = non_admin_users.filter(id__in=CourseMember.objects.values_list("user_id", flat=True)).distinct()
+    users_with_courses = non_admin_users.filter(
+        id__in=CourseMember.objects.values_list("user_id", flat=True)
+    ).distinct()
     total_users_with_courses = users_with_courses.count()
 
     users_without_courses = non_admin_users.exclude(
@@ -326,3 +329,38 @@ def courseMemberStat(request):
         course_data.append(record)
     result = {"data_count": len(course_data), "data": course_data}
     return JsonResponse(result)
+
+
+def content_list(request):
+    courses = Course.objects.prefetch_related("coursecontent_set").all()
+    return render(request, "core/konten_list.html", {"courses": courses})
+
+
+def content_detail(request, pk):
+    content = get_object_or_404(CourseContent, pk=pk)
+    ext = content.file_extension
+
+    is_image = ext in [".png", ".jpg", ".jpeg", ".gif", ".webp"]
+    is_pdf = ext == ".pdf"
+    is_ppt = ext in [".ppt", ".pptx"]
+    is_video_file = ext in [".mp4", ".webm"]
+
+    context = {
+        "content": content,
+        "is_image": is_image,
+        "is_pdf": is_pdf,
+        "is_ppt": is_ppt,
+        "is_video_file": is_video_file,
+    }
+    return render(request, "core/konten_detail.html", context)
+
+
+def download_content_file(request, pk):
+    content = get_object_or_404(CourseContent, pk=pk)
+    if not content.file_attachment:
+        raise Http404("Konten ini tidak memiliki lampiran file.")
+
+    file_path = content.file_attachment.path
+    if os.path.exists(file_path):
+        return FileResponse(open(file_path, "rb"), as_attachment=True)
+    raise Http404("File fisik tidak ditemukan pada storage server.")

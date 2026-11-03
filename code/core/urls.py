@@ -28,4 +28,11 @@ urlpatterns = [
     path("user-courses/", views.userCourses, name="user_courses"),
     # path("courses-stat/", views.courseStat, name="courses_stat"),
     path("courses-member-stat/", views.courseMemberStat, name="courses_member_stat"),
+    path("konten/", views.content_list, name="content_list"),
+    path("konten/<int:pk>/", views.content_detail, name="content_detail"),
+    path(
+        "konten/<int:pk>/download/",
+        views.download_content_file,
+        name="download_content_file",
+    ),
 ]

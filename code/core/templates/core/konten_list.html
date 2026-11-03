@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Konten Video & File — e-LMS Kulino</title>
+    <!-- Google Font Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy-deepest: #001226;
+            --navy-deep: #001a36;
+            --navy-main: #002752;
+            --navy-card: #002248;
+            --gold: #f59e0b;
+            --gold-light: #fbbf24;
+            --blue-sky: #38bdf8;
+            --text-white: #ffffff;
+            --text-muted: #cbd5e1;
+            --text-dim: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 50% 20%, #002244 0%, var(--navy-deepest) 100%);
+            color: var(--text-white);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            padding: 28px 20px 60px;
+        }
+
+        .wrapper {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        /* Top Bar Nav */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .nav-links-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            border-radius: 10px;
+            background: var(--navy-card);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--navy-main);
+            color: #ffffff;
+            border-color: var(--blue-sky);
+        }
+
+        .btn-nav.active {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: var(--gold);
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        /* Header Title Banner */
+        .header-box {
+            background: linear-gradient(180deg, var(--navy-main) 0%, var(--navy-card) 100%);
+            border: 1px solid var(--card-border);
+            border-top: 4px solid var(--gold);
+            border-radius: 16px;
+            padding: 26px 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 15, 35, 0.4);
+        }
+
+        .header-box h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+            margin-bottom: 6px;
+        }
+
+        .header-box p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Course Card */
+        .course-card {
+            background: var(--navy-card);
+            border: 1px solid var(--card-border);
+            border-left: 4px solid var(--gold);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 20px rgba(0, 15, 35, 0.3);
+        }
+
+        .course-title {
+            font-size: 19px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .course-desc {
+            color: var(--text-muted);
+            font-size: 13.5px;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        /* Content List Item */
+        .content-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-top: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .content-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--blue-sky);
+            transform: translateX(3px);
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 14.5px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .badge-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--blue-sky);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            margin-top: 4px;
+            margin-right: 6px;
+        }
+
+        .badge-file {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--gold-light);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-view {
+            background: linear-gradient(135deg, var(--gold), #d97706);
+            color: var(--navy-deepest);
+            padding: 9px 18px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        .btn-view:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.35);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 12.5px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Top Nav -->
+        <nav class="top-nav">
+            <div class="nav-links-left">
+                <a href="/" class="btn-nav">
+                    ← Kembali ke Dashboard
+                </a>
+                <a href="/statistik/" class="btn-nav">
+                    Statistik Kursus
+                </a>
+                <a href="/statistik-pengguna/" class="btn-nav">
+                    Statistik Pengguna
+                </a>
+                <a href="/konten/" class="btn-nav active">
+                    Konten Video & File
+                </a>
+            </div>
+        </nav>
+
+        <!-- Title Banner -->
+        <header class="header-box">
+            <h1>📂 Repository Video & Dokumen Akademik</h1>
+            <p>Pilih materi pembelajaran untuk memutar video materi atau pratinjau dokumen (PDF, PPT, PNG).</p>
+        </header>
+
+        {% for course in courses %}
+        <div class="course-card">
+            <div class="course-title">📚 {{ course.name }}</div>
+            <p class="course-desc">{{ course.description }}</p>
+
+            {% for item in course.coursecontent_set.all %}
+            <div class="content-item">
+                <div>
+                    <div class="item-title">{{ item.name }}</div>
+                    <div>
+                        {% if item.video_url %}<span class="badge-type">📹 Video Youtube</span>{% endif %}
+                        {% if item.file_attachment %}<span class="badge-type badge-file">📄 File {{
+                            item.file_extension|upper }}</span>{% endif %}
+                    </div>
+                </div>
+                <a href="{% url 'content_detail' item.id %}" class="btn-view">Buka Materi &rarr;</a>
+            </div>
+            {% empty %}
+            <div style="font-size:13px; color:var(--text-dim); padding:10px 0;">Belum ada materi untuk mata kuliah ini.
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <footer>
+            e-LMS Kulino &bull; Modul Konten Pembelajaran & Repository File
+        </footer>
+    </div>
+</body>
+
+</html>

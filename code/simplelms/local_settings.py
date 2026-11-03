@@ -1,4 +1,6 @@
 from django.conf import settings
+from pathlib import Path
+import os
 
 DEBUG = True
 ALLOWED_HOSTS = ['*']
@@ -16,3 +18,8 @@ DATABASES = {
         'HOST': 'simpledb',
     }
 }
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
