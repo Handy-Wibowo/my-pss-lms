@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Komentar &amp; Diskusi — e-LMS Kulino</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy-deepest: #001226;
+            --navy-deep: #001a36;
+            --navy-main: #002752;
+            --navy-card: #002248;
+            --gold: #f59e0b;
+            --gold-light: #fbbf24;
+            --blue-sky: #38bdf8;
+            --text-white: #ffffff;
+            --text-muted: #cbd5e1;
+            --text-dim: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 50% 20%, #002244 0%, var(--navy-deepest) 100%);
+            color: var(--text-white);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            padding: 28px 20px 60px;
+        }
+
+        .wrapper {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .nav-links-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            border-radius: 10px;
+            background: var(--navy-card);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--navy-main);
+            color: #ffffff;
+            border-color: var(--blue-sky);
+        }
+
+        .btn-nav.active {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: var(--gold);
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        .header-box {
+            background: linear-gradient(180deg, var(--navy-main) 0%, var(--navy-card) 100%);
+            border: 1px solid var(--card-border);
+            border-top: 4px solid var(--gold);
+            border-radius: 16px;
+            padding: 26px 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 15, 35, 0.4);
+        }
+
+        .header-box h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+            margin-bottom: 6px;
+        }
+
+        .header-box p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .discussion-card {
+            background: var(--navy-card);
+            border: 1px solid var(--card-border);
+            border-left: 4px solid var(--gold);
+            border-radius: 14px;
+            padding: 22px 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 20px rgba(0, 15, 35, 0.3);
+        }
+
+        .discussion-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-bottom: 10px;
+        }
+
+        .author {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .created-at {
+            color: var(--text-dim);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .context {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            color: var(--blue-sky);
+            font-size: 12.5px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .context-separator {
+            color: var(--gold-light);
+        }
+
+        .comment-text {
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.65;
+            padding: 14px 16px;
+            overflow-wrap: anywhere;
+        }
+
+        .empty-state {
+            background: var(--navy-card);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            color: var(--text-dim);
+            font-size: 14px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 12.5px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav class="top-nav">
+            <div class="nav-links-left">
+                <a href="/" class="btn-nav">← Kembali ke Dashboard</a>
+                <a href="/kursus/" class="btn-nav">Manajemen Kursus</a>
+                <a href="/konten/" class="btn-nav">Konten Video &amp; File</a>
+                <a href="/komentar/" class="btn-nav active">Komentar &amp; Diskusi</a>
+            </div>
+        </nav>
+
+        <header class="header-box">
+            <h1>💬 Komentar &amp; Diskusi</h1>
+            <p>Lihat komentar terbaru dari subscriber beserta konteks kursus dan materi yang sedang dibahas.</p>
+        </header>
+
+        {% for item in comments %}
+        <article class="discussion-card">
+            <div class="discussion-top">
+                <h2 class="author">{{ item.member_id.user_id.username }}</h2>
+                <time class="created-at">{{ item.created_at|date:"d M Y H:i" }}</time>
+            </div>
+            <div class="context">
+                <span>{{ item.content_id.course_id.name }}</span>
+                <span class="context-separator">&bull;</span>
+                <span>{{ item.content_id.name }}</span>
+            </div>
+            <div class="comment-text">{{ item.comment|linebreaksbr }}</div>
+        </article>
+        {% empty %}
+        <div class="empty-state">Belum ada komentar atau diskusi.</div>
+        {% endfor %}
+
+        <footer>
+            e-LMS Kulino &bull; Komentar dan Diskusi Pembelajaran
+        </footer>
+    </div>
+</body>
+
+</html>
