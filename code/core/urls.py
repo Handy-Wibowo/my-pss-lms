@@ -29,6 +29,8 @@ urlpatterns = [
     # path("courses-stat/", views.courseStat, name="courses_stat"),
     path("courses-member-stat/", views.courseMemberStat, name="courses_member_stat"),
     path("konten/", views.content_list, name="content_list"),
+    path("kursus/", views.manajemen_kursus, name="manajemen_kursus"),
+    path("komentar/", views.komentar_diskusi, name="komentar_diskusi"),
     path("konten/<int:pk>/", views.content_detail, name="content_detail"),
     path(
         "konten/<int:pk>/download/",

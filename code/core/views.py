@@ -336,6 +336,20 @@ def content_list(request):
     return render(request, "core/konten_list.html", {"courses": courses})
 
 
+def manajemen_kursus(request):
+    courses = Course.objects.prefetch_related(
+        "coursemember_set__user_id", "teacher"
+    )
+    return render(request, "core/manajemen_kursus.html", {"courses": courses})
+
+
+def komentar_diskusi(request):
+    comments = Comment.objects.select_related(
+        "member_id__user_id", "content_id__course_id"
+    ).order_by("-created_at")
+    return render(request, "core/komentar_diskusi.html", {"comments": comments})
+
+
 def content_detail(request, pk):
     content = get_object_or_404(CourseContent, pk=pk)
     ext = content.file_extension
